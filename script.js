@@ -7,10 +7,8 @@ fetch(apiUrl)
     data.forEach(row => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-      <td>${row.Number || ''}</td>
         <td>${row.Word || ''}</td>
         <td>${row.Meaning || ''}</td>
-        <td>${row.Type || ''}</td>
         <td>${row.Example || ''}</td>
       `;
       tbody.appendChild(tr);
