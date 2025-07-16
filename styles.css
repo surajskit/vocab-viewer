@@ -30,3 +30,27 @@ th {
 tr:nth-child(even) {
   background-color: #f7f7f7;
 }
+
+/* Mobile styles: Apply when screen width is 600px or less */
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 90px;
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 60px;
+    text-align: center;
+  }
+
+  table {
+    font-size: 60px;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+}
