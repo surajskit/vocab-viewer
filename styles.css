@@ -19,13 +19,12 @@ table {
 th,
 td {
   padding: 12px;
-
   border: 1px solid #ddd;
   text-align: left;
 }
 
 th {
-  background-color: #f0f0f0;
+  background-color: #dae8eb;
 }
 
 tr:nth-child(even) {
