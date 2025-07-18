@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scrappy</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Top Level Navbar -->
+    <nav class="level-navbar">
+      <button onclick="switchLevel('N5')">Home</button>
+      <button onclick="switchLevel('N5')">N5</button>
+      <button onclick="switchLevel('N4')">N4</button>
+      <button onclick="switchLevel('N3')">N3</button>
+      <button onclick="switchLevel('N2')">N2</button>
+      <button onclick="switchLevel('N1')">N1</button>
+    </nav>
+
+    <!-- Section Navbar -->
+    <nav class="section-navbar" id="sectionNavbar">
+      <!-- Will be filled dynamically -->
+    </nav>
+
+    <!-- Content Area -->
+    <div id="content" class="content-area">
+      Select a section to view content.
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
+
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #004080;
+  padding: 10px;
+}
+
+nav button {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  margin: 5px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+nav button:hover {
+  background-color: #005bb5;
+}
+
+.section-navbar {
+  background-color: #336699;
+}
+
+.content-area {
+  padding: 20px;
+  background: white;
+  max-width: 900px;
+  margin: auto;
+  border-radius: 8px;
+  margin-top: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav button {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .content-area {
+    margin: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+const sections = {
+  N5: ["N5 Kanji", "N5 Vocab", "N5 Grammar", "N5 Reading", "N5 Listening", "N5 Exercises"],
+  N4: ["N4 Kanji", "N4 Vocab", "N4 Grammar", "N4 Reading", "N4 Listening", "N4 Exercises"],
+  N3: ["N3 Kanji", "N3 Vocab", "N3 Grammar", "N3 Reading", "N3 Listening", "N3 Exercises"],
+  N2: ["N2 Kanji", "N2 Vocab", "N2 Grammar", "N2 Reading", "N2 Listening", "N2 Exercises"],
+  N1: ["N1 Kanji", "N1 Vocab", "N1 Grammar", "N1 Reading", "N1 Listening", "N1 Exercises"],
+};
+
+function switchLevel(level) {
+  const sectionNavbar = document.getElementById("sectionNavbar");
+  const content = document.getElementById("content");
+
+  // Clear old buttons
+  sectionNavbar.innerHTML = "";
+
+  // Load new buttons
+  sections[level].forEach(section => {
+    const btn = document.createElement("button");
+    btn.textContent = section;
+    btn.onclick = () => {
+      content.innerHTML = `<h2>${section}</h2><p>Content for ${section.toLowerCase()} will appear here.</p>`;
+    };
+    sectionNavbar.appendChild(btn);
+  });
+
+  // Auto-load first section content
+  content.innerHTML = `<h2>${sections[level][1]}</h2><p>Content for ${sections[level][1].toLowerCase()} will appear here.</p>`;
+}
+
+// Load default (N5) on first visit
+switchLevel("N5");
